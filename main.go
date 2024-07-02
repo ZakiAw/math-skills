@@ -18,9 +18,11 @@ func main() {
 	info, _ := os.ReadFile(filename)
 	split := strings.Split(string(info), "\n")
 	for _, i := range split {
-		num, _ := strconv.Atoi(i)
+		num, err := strconv.Atoi(i)
+		if err == nil {
 		arr = append(arr, num)
 	}
+}
 	// if there is a newline
 	if arr[len(arr)-1] == 0 { 
 	arr = arr[:len(arr)-1]
@@ -40,8 +42,8 @@ func average(a []int) int {// 1 2
 	}
 	new := float64(n)
 	new /= float64(len)
-	me := int(math.Round(new))
-	return me
+	average := int(math.Round(new))
+	return average
 }
 
 func median(a []int) int {
@@ -80,7 +82,6 @@ func power(n, y float64) float64 {
 	for i := 1; float64(i) < y; i++ {
 		n *= n
 	}
-
 	return n
 }
 
